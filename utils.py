@@ -52,6 +52,7 @@ def get_monday_prompt():
         f"like a new software release or an interesting fact, citing the information found. The post should have an optimistic and forward-looking tone, be easy to understand for everyone, "
         f"and include the source link and company tag (e.g., use @company - the tag should be available) where relevant. Make sure to credit the sources by mentioning the website or platform "
         f"from which the information was gathered. The post should be between 160 and 180 words. After writing the post, count the words and ensure it meets the requirement. If it does not, adjust the length accordingly to fit the range."
+        f"Do not tell me the length of the message."
     )
 
 # Function to generate a prompt for a LinkedIn post summarizing the previous day's news
@@ -119,11 +120,12 @@ def get_current_date():
         print(f"Error getting the current date: {e}")  # Print an error message if there's an exception
         return None
 
-# Function to send a prompt to OpenAI and get a response
+# Function to send a prompt to OpenAI and get a response using GPT-4o
 def send_prompt(prompt):
     try:
+        # Updated model to GPT-4o
         completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Use the GPT-3.5 Turbo model
+            model="gpt-4o",  # Use the GPT-4o model
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},  # System message to define assistant role
                 {"role": "user", "content": prompt}  # User message with the prompt content
